@@ -303,33 +303,43 @@ nav ul a:hover, nav ul a.active {
 /* STRÓJ KLUBOWY - UKŁAD DWUKOLUMNOWY */
 /* ================================== */
 
-/* Zmiana nazwy bloku na bardziej ogólną i podział na 2 kolumny na dużych ekranach */
-.stroj-details-wrapper {
+/* Główny kontener stroju - w tej chwili to jest sekcja-blok */
+.clothing-grid-main {
+    padding: 30px; /* Zmniejszenie paddingu, bo już jest w section-block */
+    box-shadow: none; /* Usunięcie podwójnego cienia */
+}
+
+/* Kontener, który dzieli treść na dwie kolumny na dużych ekranach */
+.clothing-content-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dwie kolumny na dużych ekranach */
+    grid-template-columns: 1.2fr 1fr; /* Ustawienie 2 kolumn, lewa (listy) jest szersza */
     gap: 40px;
     align-items: flex-start;
-    margin-top: 40px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
 }
 
-/* BLOK Z LISTAMI ELEMENTÓW */
-.clothing-lists-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dwie kolumny wewnątrz bloku tekstu */
-    gap: 30px;
-    padding: 30px;
+/* Lewa strona (listy elementów) */
+.clothing-details-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    order: 1; /* Pierwsza kolumna na PC */
+}
+
+.clothing-item {
+    padding: 25px;
+    border: 1px solid #f0e0e6;
+    border-radius: 12px;
     background-color: #fffafa;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    height: 100%; /* Wypełnienie wysokości bloku */
+    transition: background-color 0.3s ease;
+    height: 100%; /* Ważne, aby bloki były równe */
 }
 
-/* NAGŁÓWKI WEWNĄTRZ BLOKU LISTY */
-.clothing-lists-block h4 {
+.clothing-item:hover {
+    background-color: #fef8f9;
+}
+
+.clothing-item h4 {
     color: #b3738e;
     font-size: 1.4em;
     border-bottom: 1px dotted #f0e0e6;
@@ -338,12 +348,12 @@ nav ul a:hover, nav ul a.active {
     text-align: center;
 }
 
-/* UKŁAD GRAFICZNY (KOŃ I POSTAĆ) */
-.clothing-image-block {
+/* Prawa strona (obraz i koszty) */
+.clothing-image-right {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    order: 2; /* Obrazki jako druga kolumna na PC */
+    order: 2; /* Druga kolumna na PC */
 }
 
 .clothing-images {
@@ -362,12 +372,11 @@ nav ul a:hover, nav ul a.active {
     object-fit: contain;
 }
 
-/* BLOK KOSZTÓW */
 .cost-block {
-    padding: 15px;
+    padding: 20px;
     background-color: #f7e8ef;
     border: 1px solid #e6a7c0;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     color: #b3738e;
     font-weight: 500;
@@ -563,18 +572,23 @@ footer p {
     /* ========================================= */
     /* STRÓJ KLUBOWY - ZMIANA NA UKŁAD PIONOWY */
     /* ========================================= */
-    .stroj-details-wrapper {
+    .clothing-content-wrapper {
         grid-template-columns: 1fr; /* Zmiana z 2 kolumn na 1 na telefonach */
         gap: 20px;
     }
     
-    .clothing-lists-block {
-        order: 1; /* Tekst idzie na górę */
-        grid-template-columns: 1fr; /* Sekcja listy też jest jednokolumnowa */
+    .clothing-details-left {
+        order: 2; /* Listy idą na dół */
+        gap: 15px;
     }
     
-    .clothing-image-block {
-        order: 2; /* Obrazy i koszty idą na dół */
+    .clothing-image-right {
+        order: 1; /* Obrazy i koszty idą na górę */
+    }
+    
+    /* Wewnątrz lewej kolumny, bloki (Postać i Koń) mają być w jednej kolumnie na telefonie */
+    .clothing-details-left {
+        flex-direction: column; /* Upewnienie się, że bloki są pionowo */
     }
     
     /* REKRUTACJA */
