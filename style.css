@@ -262,7 +262,7 @@ nav ul a:hover, nav ul a.active {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-55%, -50%);
     width: 90%;
 }
 
@@ -299,57 +299,79 @@ nav ul a:hover, nav ul a.active {
     transform: translate(-50%, -150%); /* Wypchnięcie nagłówka poza pole widzenia */
 }
 
-/* STRÓJ KLUBOWY - UKŁAD ZDJĘĆ */
-.clothing-grid {
+/* ================================== */
+/* STRÓJ KLUBOWY - UKŁAD DWUKOLUMNOWY */
+/* ================================== */
+
+/* Zmiana nazwy bloku na bardziej ogólną i podział na 2 kolumny na dużych ekranach */
+.stroj-details-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Dwie kolumny na dużych ekranach */
     gap: 40px;
     align-items: flex-start;
-    margin-top: 30px;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-.clothing-images {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.clothing-images img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.clothing-images img:hover {
-    transform: scale(1.02);
-}
-
-.clothing-detail-block {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.clothing-item {
-    padding: 25px;
-    border: 1px solid #f0e0e6;
-    border-radius: 12px;
+/* BLOK Z LISTAMI ELEMENTÓW */
+.clothing-lists-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dwie kolumny wewnątrz bloku tekstu */
+    gap: 30px;
+    padding: 30px;
     background-color: #fffafa;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: 100%; /* Wypełnienie wysokości bloku */
 }
 
-.clothing-item:hover {
-    background-color: #fef8f9;
-}
-
-.clothing-item h4 {
+/* NAGŁÓWKI WEWNĄTRZ BLOKU LISTY */
+.clothing-lists-block h4 {
     color: #b3738e;
     font-size: 1.4em;
     border-bottom: 1px dotted #f0e0e6;
     padding-bottom: 5px;
     margin-bottom: 15px;
+    text-align: center;
+}
+
+/* UKŁAD GRAFICZNY (KOŃ I POSTAĆ) */
+.clothing-image-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    order: 2; /* Obrazki jako druga kolumna na PC */
+}
+
+.clothing-images {
+    width: 100%;
+    padding: 20px;
+    background-color: #fffafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.clothing-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* BLOK KOSZTÓW */
+.cost-block {
+    padding: 15px;
+    background-color: #f7e8ef;
+    border: 1px solid #e6a7c0;
+    border-radius: 8px;
+    text-align: center;
+    color: #b3738e;
+    font-weight: 500;
+    font-size: 1.05em;
 }
 
 /* LISTY Z WŁASNĄ IKONĄ */
@@ -467,7 +489,7 @@ footer p {
 
 
 /* ================================== */
-/* 6. RESPONSIVE DESIGN (TELEFONY)    */
+/* 6. RESPONSIVE DESIGN (TELEFONY)   */
 /* ================================== */
 @media (max-width: 900px) {
     
@@ -538,19 +560,21 @@ footer p {
         height: auto; /* Dostosowanie wysokości, aby obraz się nie rozciągał */
     }
 
+    /* ========================================= */
     /* STRÓJ KLUBOWY - ZMIANA NA UKŁAD PIONOWY */
-    .clothing-grid {
-        grid-template-columns: 1fr; /* Zmiana z 2 kolumn na 1 */
-        gap: 30px;
+    /* ========================================= */
+    .stroj-details-wrapper {
+        grid-template-columns: 1fr; /* Zmiana z 2 kolumn na 1 na telefonach */
+        gap: 20px;
     }
     
-    .clothing-images {
-        order: 2; /* Przeniesienie obrazów na dół (opcjonalne) */
-        gap: 15px;
+    .clothing-lists-block {
+        order: 1; /* Tekst idzie na górę */
+        grid-template-columns: 1fr; /* Sekcja listy też jest jednokolumnowa */
     }
     
-    .clothing-detail-block {
-        order: 1; /* Przeniesienie tekstu na górę (opcjonalne) */
+    .clothing-image-block {
+        order: 2; /* Obrazy i koszty idą na dół */
     }
     
     /* REKRUTACJA */
