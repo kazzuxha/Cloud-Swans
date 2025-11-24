@@ -300,30 +300,58 @@ nav ul a:hover, nav ul a.active {
 }
 
 /* ================================== */
-/* STRÓJ KLUBOWY - UKŁAD DWUKOLUMNOWY */
+/* STRÓJ KLUBOWY - UKŁAD Z OBRAZKIEM NA GÓRZE */
 /* ================================== */
 
 /* Główny kontener stroju - w tej chwili to jest sekcja-blok */
-.clothing-grid-main {
-    padding: 30px; /* Zmniejszenie paddingu, bo już jest w section-block */
-    box-shadow: none; /* Usunięcie podwójnego cienia */
-}
-
-/* Kontener, który dzieli treść na dwie kolumny na dużych ekranach */
-.clothing-content-wrapper {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr; /* Ustawienie 2 kolumn, lewa (listy) jest szersza */
-    gap: 40px;
-    align-items: flex-start;
-    margin-top: 30px;
-}
-
-/* Lewa strona (listy elementów) */
-.clothing-details-left {
+.clothing-layout-top-image {
+    /* Utrzymujemy padding z sekcji-blok */
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    order: 1; /* Pierwsza kolumna na PC */
+    flex-direction: column; /* Wszystkie elementy ułożone pionowo */
+    gap: 25px; /* Odstęp między sekcjami wewnątrz bloku */
+}
+
+/* Blok obrazka - Pełna szerokość na górze */
+.clothing-image-top {
+    width: 100%;
+    padding: 20px;
+    background-color: #fffafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    /* Usuwamy ten blok z przepływu flex, aby obraz był na całej szerokości */
+}
+
+.clothing-image-top img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    /* Maksymalna wysokość, aby obrazek nie był przesadnie duży */
+    max-height: 500px;
+}
+
+/* Blok kosztów pod obrazkiem */
+.cost-block-top {
+    padding: 20px;
+    background-color: #f7e8ef;
+    border: 1px solid #e6a7c0;
+    border-radius: 12px;
+    text-align: center;
+    color: #b3738e;
+    font-weight: 500;
+    font-size: 1.05em;
+    max-width: 500px; /* Ograniczenie szerokości bloku kosztów */
+    margin: 0 auto; /* Wyśrodkowanie bloku kosztów */
+}
+
+
+/* Kontener list (pod obrazkiem) - układ dwukolumnowy na PC */
+.clothing-details-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dwie równe kolumny */
+    gap: 30px;
+    margin-top: 15px; /* Odstęp od nagłówka */
 }
 
 .clothing-item {
@@ -346,41 +374,6 @@ nav ul a:hover, nav ul a.active {
     padding-bottom: 5px;
     margin-bottom: 15px;
     text-align: center;
-}
-
-/* Prawa strona (obraz i koszty) */
-.clothing-image-right {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    order: 2; /* Druga kolumna na PC */
-}
-
-.clothing-images {
-    width: 100%;
-    padding: 20px;
-    background-color: #fffafa;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-.clothing-images img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: contain;
-}
-
-.cost-block {
-    padding: 20px;
-    background-color: #f7e8ef;
-    border: 1px solid #e6a7c0;
-    border-radius: 12px;
-    text-align: center;
-    color: #b3738e;
-    font-weight: 500;
-    font-size: 1.05em;
 }
 
 /* LISTY Z WŁASNĄ IKONĄ */
@@ -572,25 +565,18 @@ footer p {
     /* ========================================= */
     /* STRÓJ KLUBOWY - ZMIANA NA UKŁAD PIONOWY */
     /* ========================================= */
-    .clothing-content-wrapper {
+    
+    /* Kontener list na telefonie - jedna kolumna */
+    .clothing-details-bottom {
         grid-template-columns: 1fr; /* Zmiana z 2 kolumn na 1 na telefonach */
         gap: 20px;
     }
     
-    .clothing-details-left {
-        order: 2; /* Listy idą na dół */
-        gap: 15px;
+    /* Zmiana rozmiaru obrazka na telefonie (jeśli jest zbyt duży) */
+    .clothing-image-top img {
+        max-height: 300px;
     }
-    
-    .clothing-image-right {
-        order: 1; /* Obrazy i koszty idą na górę */
-    }
-    
-    /* Wewnątrz lewej kolumny, bloki (Postać i Koń) mają być w jednej kolumnie na telefonie */
-    .clothing-details-left {
-        flex-direction: column; /* Upewnienie się, że bloki są pionowo */
-    }
-    
+
     /* REKRUTACJA */
     .recruitment-block {
         padding: 20px;
